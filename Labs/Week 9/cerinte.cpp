@@ -1,73 +1,54 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-
-// Definiți următoarea structură de obiecte
-
-// Vehicul (ID, nume, serie) -> (porneste(), detalii())
-// Aerian (ID, nume, serie, număr motoare) -> (anuntaDecolare(mesaj))
-// Comercial (ID, nume, serie, număr motoare, serie, număr locuri business class, numar locuri economy class, număr persoane in echipaj) -> (anuntaDecolare(punetiCenturile))
-// Cargo (ID, nume,serie,  număr motoare, capacitate transport, număr de persoane în echipaj) -> (anuntaDecolare(asiguratiMarfa))
-
-class Vehicul
-{
+class Vehicul {
 protected:
-    int id;
-    string nume;
-    string serie;
+	int id;
+	string nume;
+	string serie;
 
 public:
-    void porneste()
-    {
-        cout << "Vehiculul a pornit." << endl;
-    }
+	Vehicul(int id, string nume, string serie) {
+		this->id = id;
+		this->nume = nume;
+		this->serie = serie;
+	}
 
-    void detalii()
-    {
-        cout << "ID: " << id << ", Nume: " << nume << ", Serie: " << serie << endl;
-    }
+	void porneste() {
+		cout << "Am pornit!" << endl;
+	}
+
+	void detalii() {
+		cout << this->id << endl;
+		cout << this->nume << endl;
+		cout << this->serie << endl;
+	}
 };
 
-class VehiculAerian : public Vehicul
-{
+class VehiculAerian: public Vehicul {
 protected:
-    int numarMotoare;
+	int nrMotoare;
 
 public:
-    void anuntaDecolare(string mesaj)
-    {
-        cout << "Anunt de decolare: " << mesaj << endl;
-    }
+	void porneste() {
+		cout << "Vaj!";
+	}
+
+	void detalii() {
+		Vehicul::detalii(); // Astfel, this merge la clasa de baza
+		cout << this->nrMotoare;
+	}
+
+	VehiculAerian(int id, string nume, string serie, int nrMotoare):Vehicul(id, nume, serie) {
+		this->nrMotoare = nrMotoare;
+
+	}
+	
+	void anuntaDecolare() {
+		cout << "Am decolat! Yey!" << endl;
+	}
 };
 
-class Comercial : public VehiculAerian
-{
-protected:
-    int numarLocuriBusinessClass;
-    int numarLocuriEconomyClass;
-    int numarPersoaneEchipaj;
-
-public:
-    void anuntaDecolare(string punetiCenturile)
-    {
-        cout << "Anunt de decolare pentru comercial: " << punetiCenturile << endl;
-    }
-};
-
-class Cargo : public VehiculAerian
-{
-protected:
-    int capacitateTransport;
-    int numarPersoaneEchipaj;
-
-public:
-    void anuntaDecolare(string asiguratiMarfa)
-    {
-        cout << "Anunt de decolare pentru cargo: " << asiguratiMarfa << endl;
-    }
-};
-
-int main()
-{
-    VehiculAerian va;
-    va.porneste();
+int main() {
+	VehiculAerian va(1,"737", "ABC", 2);
+	va.detalii();
 }
