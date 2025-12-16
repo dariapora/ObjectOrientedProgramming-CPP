@@ -11,4 +11,5 @@ add_executable(ObjectOrientedProgramming_CPP
         "Labs/Week 5/main.cpp"
         "Labs/Week 6/main.cpp"
         "Labs/Week 9/cerinte.cpp"
-        "Labs/Week 9/main.cpp")
+        "Labs/Week 9/main.cpp"
+        "Week 11/main.cpp")
